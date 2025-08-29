@@ -23,7 +23,7 @@ import { DataSource } from 'typeorm';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-        envFilePath: process.env.NODE_ENV === 'production' ? '.env.production' : '.env'
+       envFilePath: '.env'
     }),
     MulterModule.register({
       dest: './uploads', // Directorio temporal para almacenar archivos
@@ -31,22 +31,16 @@ import { DataSource } from 'typeorm';
     TypeOrmModule.forRootAsync({
       useFactory:()=>({
         type: 'postgres',
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        username: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
+        url: process.env.DATABASE_URL, // Render proporciona esta variable
         autoLoadEntities: true,
-        synchronize: process.env.NODE_ENV !== 'production', // No sincronizar en producción
-        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-      }),
-      dataSourceFactory: async (options) => {
-        if (!options) {
-          throw new Error('DataSource options are required');
+        synchronize: false, // Nunca true en producción
+        ssl: { rejectUnauthorized: false }, // Siempre SSL en producción
+        extra: {
+          ssl: process.env.NODE_ENV === 'production' ? {
+            rejectUnauthorized: false
+          } : false,
         }
-        const dataSource = await new DataSource(options).initialize();
-        return dataSource;
-      },
+      }),
     }),
     RolesModule,
     AuthModule,
