@@ -9,11 +9,14 @@ async function bootstrap() {
 
   // Habilitar CORS
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Cambia '*' por el dominio específico en producción
+    origin: [
+      process.env.FRONTEND_URL,
+      process.env.RENDER_EXTERNAL_URL,
+      'http://localhost:5173'
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Permitir cookies y tokens de sesión
+    credentials: true,
     allowedHeaders: 'Content-Type, Authorization',
-    
   });
 
   const config = new DocumentBuilder()
@@ -37,7 +40,7 @@ async function bootstrap() {
 
   // Usa el puerto 4001 
   const port = process.env.PORT || 4001; // Fuerza 4001 si hay fallos
-  await app.listen(port);
-  logger.log(`Swagger docs: http://localhost:${port}/api`);
+  await app.listen(port, '0.0.0.0');
+  logger.log(`Application running on port ${port}`);
 }
 bootstrap();
