@@ -1,4 +1,3 @@
-// src/evento/dto/cambiar-estado.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsNumber, IsNotEmpty } from 'class-validator';
 

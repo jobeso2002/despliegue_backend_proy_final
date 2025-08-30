@@ -5,12 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Usuario } from './entities/usuario.entity';
 import { AuthModule } from '../auth/auth.module';
 import { RolesModule } from '../roles/roles.module';
-import { ClubModule } from 'src/club/club.module';
-import { EventoModule } from 'src/evento/evento.module';
-import { PartidoModule } from 'src/partido/partido.module';
-import { TransferenciaModule } from 'src/transferencia/transferencia.module';
-import { InscripcionModule } from 'src/inscripcion/inscripcion.module';
-import { ResultadoModule } from 'src/resultado/resultado.module';
+import { ClubModule } from '../club/club.module';
+import { EventoModule } from '../evento/evento.module';
+import { PartidoModule } from '../partido/partido.module';
+import { TransferenciaModule } from '../transferencia/transferencia.module';
+import { InscripcionModule } from '../inscripcion/inscripcion.module';
+import { ResultadoModule } from '../resultado/resultado.module';
 
 @Module({
   imports: [

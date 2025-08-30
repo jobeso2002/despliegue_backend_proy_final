@@ -1,6 +1,6 @@
 import { IsEnum } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { PermisoType } from "src/common/permiso.enum";
+import { PermisoType } from "../../common/permiso.enum";
 
 export class CreatePermisionDto {
     @ApiProperty({example: 'WRITE'})

@@ -1,9 +1,9 @@
 import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { RoleType } from "src/common/tiporole.enum";
+import { RoleType } from "../common/tiporole.enum";
 import { Authen } from "./decorators/auth.decorator";
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse } from "@nestjs/swagger";
-import { PermisoType } from "src/common/permiso.enum";
+import { PermisoType } from "../common/permiso.enum";
 import { RegisterDto } from "./dto/register.dto";
 import { LoginDto } from "./dto/login.dto";
 

@@ -152,7 +152,7 @@ export class ClubController {
     return this.clubService.getDeportistasByClub(+id);
   }
 
-  // src/club/club.controller.ts
+ 
   @ApiBearerAuth('mi secreto1')
   @Post(':id/deportistas')
   @ApiOperation({ summary: 'Asignar un deportista a un club' })

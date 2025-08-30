@@ -7,7 +7,7 @@ import { Repository } from 'typeorm';
 import { Deportista } from '../deportista/entities/deportista.entity';
 import { Club } from '../club/entities/club.entity';
 import { Usuario } from '../usuario/entities/usuario.entity';
-import { ClubDeportista } from '../club/entities/clubdeportista';
+import { ClubDeportista } from '../club/entities/club-deportista';
 
 @Injectable()
 export class TransferenciaService {

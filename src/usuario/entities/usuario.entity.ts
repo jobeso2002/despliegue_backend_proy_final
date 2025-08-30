@@ -9,9 +9,9 @@ import {
 } from 'typeorm';
 import { Evento } from '../../evento/entities/evento.entity';
 import { Partido } from '../../partido/entities/partido.entity';
-import { Transferencia } from 'src/transferencia/entities/transferencia.entity';
-import { Inscripcion } from 'src/inscripcion/entities/inscripcion.entity';
-import { Resultado } from 'src/resultado/entities/resultado.entity';
+import { Transferencia } from '../../transferencia/entities/transferencia.entity';
+import { Inscripcion } from '../../inscripcion/entities/inscripcion.entity';
+import { Resultado } from '../../resultado/entities/resultado.entity';
 
 @Entity()
 export class Usuario {
@@ -23,6 +23,9 @@ export class Usuario {
 
   @Column({ nullable: false, unique: true, length: 100 })
   email: string;
+
+  @Column({ nullable: true })
+edad?: number;
 
   @Column({ nullable: false })
   password: string;

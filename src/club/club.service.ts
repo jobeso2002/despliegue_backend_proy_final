@@ -13,7 +13,7 @@ import { Usuario } from '../usuario/entities/usuario.entity';
 import { ClubResponseDto } from './dto/club-respon.dto';
 import { Deportista } from '../deportista/entities/deportista.entity';
 import { AsignarDeportistaDto } from './dto/asignardeportista.dto';
-import { ClubDeportista } from './entities/clubdeportista';
+import { ClubDeportista } from './entities/club-deportista';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
 
 @Injectable()

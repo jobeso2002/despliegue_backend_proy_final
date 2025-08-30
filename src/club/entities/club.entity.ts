@@ -10,7 +10,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Partido } from '../../partido/entities/partido.entity';
-import { ClubDeportista } from './clubdeportista';
+import { ClubDeportista } from './club-deportista';
 
 @Entity()
 export class Club {

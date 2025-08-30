@@ -13,8 +13,8 @@ import { Contacto } from '../contacto/entities/contacto.entity';
 import { Transferencia } from '../transferencia/entities/transferencia.entity';
 import { CreateContactoDto } from '../contacto/dto/create-contacto.dto';
 import { CreateTransferenciaDto } from '../transferencia/dto/create-transferencia.dto';
-import { Club } from 'src/club/entities/club.entity';
-import { ClubDeportista } from '../club/entities/clubdeportista';
+import { Club } from '../club/entities/club.entity';
+import { ClubDeportista } from '../club/entities/club-deportista';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
 
 @Injectable()

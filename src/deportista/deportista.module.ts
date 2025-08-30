@@ -7,7 +7,7 @@ import { AuthModule } from '../auth/auth.module';
 import { ContactoModule } from '../contacto/contacto.module';
 import { TransferenciaModule } from '../transferencia/transferencia.module';
 import { EstadisticaPartidoModule } from '../estadistica-partido/estadistica-partido.module';
-import { ClubDeportista } from '../club/entities/clubdeportista';
+import { ClubDeportista } from '../club/entities/club-deportista';
 import { Club } from '../club/entities/club.entity';
 import { ClubModule } from '../club/club.module';
 import { CloudinaryModule } from '../cloudinary/cloudinary.module';

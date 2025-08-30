@@ -16,30 +16,46 @@ import { ResultadoModule } from './resultado/resultado.module';
 import { EstadisticaPartidoModule } from './estadistica-partido/estadistica-partido.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { MulterModule } from '@nestjs/platform-express';
-import { DataSource } from 'typeorm';
-
+import { Club } from './club/entities/club.entity';
+import { Contacto } from './contacto/entities/contacto.entity';
+import { Deportista } from './deportista/entities/deportista.entity';
+import { EstadisticaPartido } from './estadistica-partido/entities/estadistica-partido.entity';
+import { Evento } from './evento/entities/evento.entity';
+import { Inscripcion } from './inscripcion/entities/inscripcion.entity';
+import { Partido } from './partido/entities/partido.entity';
+import { Permiso } from './permiso/entities/permiso.entity';
+import { Resultado } from './resultado/entities/resultado.entity';
+import { Role } from './roles/entities/role.entity';
+import { Transferencia } from './transferencia/entities/transferencia.entity';
+import { Usuario } from './usuario/entities/usuario.entity';
+import { ClubDeportista } from './club/entities/club-deportista';
+import { SetResultado } from './resultado/entities/set-resulado';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-       envFilePath: '.env'
+      envFilePath: '.env',
     }),
     MulterModule.register({
       dest: './uploads', // Directorio temporal para almacenar archivos
     }),
     TypeOrmModule.forRootAsync({
-      useFactory:()=>({
+      useFactory: () => ({
         type: 'postgres',
-        url: process.env.DATABASE_URL, // Render proporciona esta variable
+        host: process.env.DB_HOST,
+        port: Number(process.env.DB_PORT),
+        username: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        entities: [Club, Contacto, Deportista, EstadisticaPartido, Evento, Inscripcion, 
+        Partido, Permiso, Resultado, Role, Transferencia, Usuario, ClubDeportista, SetResultado],
         autoLoadEntities: true,
         synchronize: false, // Nunca true en producción
-        ssl: { rejectUnauthorized: false }, // Siempre SSL en producción
-        extra: {
-          ssl: process.env.NODE_ENV === 'production' ? {
-            rejectUnauthorized: false
-          } : false,
-        }
+        ssl:
+          process.env.NODE_ENV === 'production'
+            ? { rejectUnauthorized: false }
+            : false, // Siempre SSL en producción
       }),
     }),
     RolesModule,
@@ -56,7 +72,6 @@ import { DataSource } from 'typeorm';
     ResultadoModule,
     EstadisticaPartidoModule,
     CloudinaryModule,
-  ]
-  
+  ],
 })
 export class AppModule {}

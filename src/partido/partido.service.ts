@@ -12,7 +12,7 @@ import { Evento } from '../evento/entities/evento.entity';
 import { Between, Not, Repository } from 'typeorm';
 import { Usuario } from '../usuario/entities/usuario.entity';
 import { Resultado } from '../resultado/entities/resultado.entity';
-import { CreateResultadoDto } from 'src/resultado/dto/create-resultado.dto';
+import { CreateResultadoDto } from '../resultado/dto/create-resultado.dto';
 import { Club } from '../club/entities/club.entity';
 
 @Injectable()

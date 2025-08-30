@@ -6,7 +6,7 @@ import { Club } from './entities/club.entity';
 import { UsuarioModule } from '../usuario/usuario.module';
 import { AuthModule } from '../auth/auth.module';
 import { TransferenciaModule } from '../transferencia/transferencia.module';
-import { ClubDeportista } from './entities/clubdeportista';
+import { ClubDeportista } from './entities/club-deportista';
 import { DeportistaModule } from '../deportista/deportista.module';
 import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 
