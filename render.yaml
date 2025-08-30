@@ -1,8 +1,11 @@
 services:
   - type: web
-    name: backend-nestjs
-    env: node
-    buildCommand: npm install && npm run build
+    name: api-nest
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: npm ci && npm run build
+    preDeployCommand: npm run migration:run
     startCommand: npm run start:prod
     envVars:
       - key: NODE_ENV
@@ -11,6 +14,16 @@ services:
         fromDatabase:
           name: postgres-db
           property: connectionString
+      - key: JWT_SECRET
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        value: https://tu-frontend-en-render.onrender.com
 
 databases:
   - name: postgres-db
