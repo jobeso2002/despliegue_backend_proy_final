@@ -20,15 +20,31 @@ const isProd = process.env.NODE_ENV === 'production';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT),
-  username: process.env.DB_USER,
-  password: String(process.env.DB_PASSWORD),
-  database: process.env.DB_NAME,
-  ssl: isProd ? { rejectUnauthorized: false } : false,  
-  entities: [Club, Contacto, Deportista, EstadisticaPartido, Evento, Inscripcion, 
-    Partido, Permiso, Resultado, Role, Transferencia, Usuario, ClubDeportista, SetResultado],
+  url: process.env.DATABASE_URL || undefined, // Render
+  host: process.env.DATABASE_URL ? undefined : process.env.DB_HOST,
+  port: process.env.DATABASE_URL
+    ? undefined
+    : parseInt(process.env.DB_PORT ?? '5432', 10),
+  username: process.env.DATABASE_URL ? undefined : process.env.DB_USER,
+  password: process.env.DATABASE_URL ? undefined : process.env.DB_PASSWORD,
+  database: process.env.DATABASE_URL ? undefined : process.env.DB_NAME,
+  entities: [
+    Club,
+    Contacto,
+    Deportista,
+    EstadisticaPartido,
+    Evento,
+    Inscripcion,
+    Partido,
+    Permiso,
+    Resultado,
+    Role,
+    Transferencia,
+    Usuario,
+    ClubDeportista,
+    SetResultado,
+  ],
   migrations: ['dist/migrations/*.{js,ts}'],
   synchronize: false, // nunca true en prod
+  ssl: isProd ? { rejectUnauthorized: false } : false,
 });
-
