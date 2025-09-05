@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "${DB_PORT}:5432" # Host:5433 → Container:5432
+    #volumes:
+      #- postgres_data:/var/lib/postgresql/data 
+
+  backend:
+    build: ./ # si el Dockerfile está en la raíz, ajusta si está en /backend
+    container_name: nest_backend
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PORT: 4002
+      DB_HOST: db
+      DB_PORT: 5432 # 👈 Ojo: dentro del contenedor Postgres expone 5432, no 5433
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      JWT_SECRET: ${JWT_SECRET}
+      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+      CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET}
+      FRONTEND_URL: ${FRONTEND_URL}
+    ports:
+      - "4002:4002" # Host:4002 → Container:4001 👈 cambio aquí
+
+#volumes:
+#  postgres_data:

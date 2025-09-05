@@ -1,30 +1,29 @@
-# Etapa de construcción
+# Etapa de build
 FROM node:20-alpine AS builder
-
 WORKDIR /app
 
-# Copiar package.json y package-lock.json
 COPY package*.json ./
 RUN npm ci
 
-# Copiar el resto del código y construir
-COPY . .
+COPY tsconfig*.json ./
+COPY nest-cli.json ./
+COPY src ./src
 RUN npm run build
 
-# Etapa de producción
-FROM node:20-alpine AS production
-
+# Etapa final: runtime
+FROM node:20-alpine
 WORKDIR /app
 
-# Instalar solo dependencias de producción
 COPY package*.json ./
-RUN npm ci --only=production
+# Instala solo prod (sin devDependencies)
+RUN npm ci --omit=dev
 
-# Copiar el código construido
+# Copia el build
 COPY --from=builder /app/dist ./dist
 
-# Exponer puerto
-EXPOSE 4001
+ENV NODE_ENV=production
+# (Opcional) Documenta el puerto que usas localmente
+EXPOSE 4002
 
-# Comando para ejecutar
-CMD ["node", "dist/main"]
+# En Render el PORT viene por env; tu main ya hace process.env.PORT || 4001
+CMD ["node", "dist/main.js"]

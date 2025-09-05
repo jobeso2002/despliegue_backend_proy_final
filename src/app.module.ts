@@ -44,7 +44,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
           database: process.env.DATABASE_URL ? undefined : process.env.DB_NAME,
           autoLoadEntities: true, // carga entidades automáticamente
           synchronize: false, // nunca true en producción
-          ssl: isProd ? { rejectUnauthorized: false } : false,
+          
         };
       },
     }),

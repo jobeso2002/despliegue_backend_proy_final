@@ -29,7 +29,7 @@ async function bootstrap() {
       bearerFormat: 'JWT',
       in: 'header',
     },
-    'mi secreto1',
+    'mi_secreto1',
   )
 
   .setVersion('1.0')
